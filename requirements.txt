@@ -1,0 +1,8 @@
+pytest >=2.9.2
+logbook >=1.0.0
+PyYAML >=3.12
+pymysql >=0.9.3
+setuptools
+easyutils
+pymysql
+logbook
