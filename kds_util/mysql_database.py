@@ -127,13 +127,26 @@ class MySQL:
 
 class PyMySql(MySQL):
     def __init__(self, pymysql_url: str = "mysql+pymysql://root:2234567@192.168.1.100:3306/hqdb?charset=utf8"):
+        # config = {}
+        # pos = pymysql_url.find("://")
+        # b = pymysql_url[pos+3:]
+        # user_pass = b.split("@")[0]
+        # c = b.split("@")[1]
+        # host_port = c.split("/")[0]
+        # db_utf = c.split("/")[1]
+        # config['db_host'] = host_port.split(":")[0]
+        # config['db_port'] = int(host_port.split(":")[1])
+        # config['db_user'] = user_pass.split(":")[0]
+        # config['db_pass'] = user_pass.split(":")[1]
+        # config['db_database'] = db_utf.split("?")[0]
         config = {}
         pos = pymysql_url.find("://")
-        b = pymysql_url[pos+3:]
-        user_pass = b.split("@")[0]
-        c = b.split("@")[1]
-        host_port = c.split("/")[0]
-        db_utf = c.split("/")[1]
+        b = pymysql_url[pos + 3:]
+        pos2 = b.rfind("@")
+        user_pass = b[:pos2]
+        ip_all = b[pos2 + 1:]
+        host_port = ip_all.split("/")[0]
+        db_utf = ip_all.split("/")[1]
         config['db_host'] = host_port.split(":")[0]
         config['db_port'] = int(host_port.split(":")[1])
         config['db_user'] = user_pass.split(":")[0]
